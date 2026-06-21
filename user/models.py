@@ -8,7 +8,6 @@ class CustomUserManager(UserManager):
         if not email:
             raise ValueError("Email must be set")
         email = self.normalize_email(email)
-        # Не передаємо username взагалі
         return self._create_user(email, email, password, **extra_fields)
 
     def create_superuser(self, email, password=None, **extra_fields):
@@ -17,7 +16,6 @@ class CustomUserManager(UserManager):
         return self.create_user(email, password, **extra_fields)
 
     def _create_user(self, username, email, password, **extra_fields):
-        # Перевизначаємо, щоб не використовувати username
         user = self.model(email=email, **extra_fields)
         user.set_password(password)
         user.save(using=self._db)
