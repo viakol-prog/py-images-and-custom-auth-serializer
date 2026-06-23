@@ -13,7 +13,8 @@ class CreateUserView(generics.CreateAPIView):
 
 
 class CreateTokenView(ObtainAuthToken):
-    """Creating a new authentication token for a user using a custom serializer."""
+    """Creating a new authentication token
+    for a user using a custom serializer."""
     serializer_class = CustomAuthTokenSerializer
     renderer_classes = api_settings.DEFAULT_RENDERER_CLASSES
 
